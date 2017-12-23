@@ -1,0 +1,57 @@
+package controller;
+
+import dao.UserDao;
+import model.User;
+import util.ActionOperations;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+public class UserController extends HttpServlet {
+
+    private UserDao dao;
+
+    private static final String INSERT_OR_EDIT = "/editUser.jsp";
+    private static final String LIST_USER = "/listUser.jsp";
+
+    public UserController() {
+        this.dao = new UserDao();
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String forward = "";
+        String action = req.getParameter("action");
+
+        if (ActionOperations.DELETE.name().equalsIgnoreCase(action)) {
+            int userId = Integer.parseInt(req.getParameter("userId"));
+            dao.deleteUser(userId);
+            forward = LIST_USER;
+            req.setAttribute("users", dao.getAllUsers());
+        } else if (ActionOperations.EDIT.name().equalsIgnoreCase(action)) {
+            int userId = Integer.parseInt(req.getParameter("userId"));
+            User user = dao.getUserById(userId);
+            req.setAttribute("user", user);
+            forward = INSERT_OR_EDIT;
+        } else if (ActionOperations.LIST.name().equalsIgnoreCase(action)) {
+            req.setAttribute("users", dao.getAllUsers());
+            forward = LIST_USER;
+        } else if (ActionOperations.CREATE.name().equalsIgnoreCase(action)) {
+            forward = INSERT_OR_EDIT;
+        } else {
+            throw new RuntimeException("Invalid action");
+        }
+
+        RequestDispatcher rd = req.getRequestDispatcher(forward);
+        rd.forward(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+    }
+}
