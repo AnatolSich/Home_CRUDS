@@ -92,10 +92,9 @@ public class UserDao {
     public List<User> getAllUsers() {
         List<User> list = new ArrayList<User>();
         try {
-            PreparedStatement preparedStatement = connection
-                    .prepareStatement("SELECT * FROM users");
+            Statement preparedStatement = connection.createStatement();
 
-            ResultSet resultSet = preparedStatement.executeQuery();
+            ResultSet resultSet = preparedStatement.executeQuery("SELECT * FROM users");
             while (resultSet.next()) {
                 User user = new User(resultSet.getInt(1), resultSet.getString(2),
                         resultSet.getString(3), resultSet.getString(4),

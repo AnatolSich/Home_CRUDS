@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class UserController extends HttpServlet {
 
@@ -52,6 +55,25 @@ public class UserController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        User user = new User();
+        user.setFirstName(req.getParameter("firstName"));
+        user.setLastName(req.getParameter("lastName"));
+        try {
+            Date date = new SimpleDateFormat("mm/dd/yyyy").parse(req.getParameter("dob"));
+            user.setDob(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        user.setEmail(req.getParameter("email"));
+        String id = req.getParameter("id");
+        if (id == null || id.isEmpty()) {
+            dao.addUser(user);
+        } else {
+            user.setId(Integer.parseInt(id));
+            dao.updateUser(user);
+        }
 
+        req.setAttribute("users", dao.getAllUsers());
+        req.getRequestDispatcher(LIST_USER).forward(req, resp);
     }
 }

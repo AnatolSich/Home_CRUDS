@@ -16,7 +16,7 @@ public class DbUtil {
         } else {
             try {
                 Class.forName("org.postgresql.Driver");
-                DriverManager.getConnection(URL, LOGIN, PASSWORD);
+                connection = DriverManager.getConnection(URL, LOGIN, PASSWORD);
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             } catch (SQLException e) {

@@ -13,8 +13,8 @@ import static util.ActionEnum.*;
 
 public class UserController extends HttpServlet {
 
-    private static final String INSERT_OR_EDIT = "";
-    private static final String USER_LIST = "";
+    private static final String INSERT_OR_EDIT = "/editUser.jsp";
+    private static final String USER_LIST = "/listUser.jsp";
     private UserDao userDao;
 
 
