@@ -32,7 +32,7 @@
         <td> <c:out value="${tempBook.id}"/></td>
         <td> <c:out value="${tempBook.name}"/></td>
         <td> <c:out value="${tempBook.author}"/></td>
-        <td> <fmt:formatDate pattern='dd.MM.yyyy' value='${tempBook.release}'/></td>
+        <td> <fmt:formatDate pattern='${DATE_PATTERN}' value='${tempBook.release}'/></td>
         <td> <c:out value="${tempBook.quantity}"/></td>
         <td><a href="/BookCommit?action=edit&bookId=<c:out value="${tempBook.id}"/>"> Edit </a> </td>
         <td><a href="/BookCommit?action=delete&bookId=<c:out value="${tempBook.id}"/>"> Delete </a> </td>

@@ -19,7 +19,7 @@
     id: <input type="text" readonly="readonly" name="bookId" value="<c:out value="${book.id}"/>"><br/>
     name: <input type="text" name="name" value="<c:out value="${book.name}"/>"><br/>
     author: <input type="text" name="author" value="<c:out value="${book.author}"/>"><br/>
-    release: <input type="text" name="release" value="<fmt:formatDate pattern='dd.MM.yyyy' value='${book.release}'/>"><br/>
+    release: <input type="text" name="release" value="<fmt:formatDate pattern='${DATE_PATTERN}' value='${book.release}'/>"><br/>
     quantity: <input type="text" name="quantity" value="<c:out value="${book.quantity}"/>"><br/>
     <input type="submit" value="SUBMIT"/>
 </form>

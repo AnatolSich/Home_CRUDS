@@ -9,9 +9,13 @@ import java.util.List;
 
 public class DaoBook {
 
-    private static Connection connection = DbUtil.getConnection();
+    private static Connection connection;
 
-    public static Book getBookById(int bookId) {
+    public DaoBook() {
+        connection = DbUtil.getConnection();
+    }
+
+    public  Book getBookById(int bookId) {
         Book book = new Book();
         try {
             PreparedStatement preparedStatement = connection
@@ -31,7 +35,7 @@ public class DaoBook {
         return book;
     }
 
-    public static List<Book> getALLBooks() {
+    public  List<Book> getALLBooks() {
         List<Book> list = new ArrayList<Book>();
         try {
             PreparedStatement preparedStatement = connection
@@ -48,7 +52,7 @@ public class DaoBook {
         return list;
     }
 
-    public static void addBook(Book book) {
+    public  void addBook(Book book) {
         try {
             PreparedStatement preparedStatement = connection
                     .prepareStatement("INSERT INTO books (name, author, release, quantity) VALUES (?,?,?,?)");
@@ -63,7 +67,7 @@ public class DaoBook {
         }
     }
 
-    public static void deleteBookById(int bookId) {
+    public  void deleteBookById(int bookId) {
         try {
             PreparedStatement preparedStatement = connection
                     .prepareStatement("DELETE FROM books WHERE id=?");
@@ -74,7 +78,7 @@ public class DaoBook {
         }
     }
 
-    public static void updateBook(Book book) {
+    public  void updateBook(Book book) {
         try {
             PreparedStatement preparedStatement = connection
                     .prepareStatement("UPDATE books SET name=?,author=?,release=?,quantity=? WHERE id=?");
