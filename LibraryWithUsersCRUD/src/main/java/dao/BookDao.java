@@ -14,6 +14,21 @@ public class BookDao {
         this.connection = DbUtil.getConnection();
     }
 
+    public void editBook(Book book) {
+        try {
+            PreparedStatement preparedStatement = connection
+                    .prepareStatement("UPDATE books SET name=? , author=?,quantity=?,release=? WHERE id=?");
+            preparedStatement.setString(1, book.getName());
+            preparedStatement.setString(2, book.getAuthor());
+            preparedStatement.setInt(3, book.getQuantity());
+            preparedStatement.setDate(4, new Date(book.getRelease().getTime()));
+            preparedStatement.setInt(5, book.getId());
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public Book getBookById(int bookId) {
         Book book = new Book();
         try {

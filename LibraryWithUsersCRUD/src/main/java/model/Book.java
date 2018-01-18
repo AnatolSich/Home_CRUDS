@@ -2,7 +2,9 @@ package model;
 
 import java.util.Date;
 
+
 public class Book {
+
     private Integer id;
     private String name;
     private String author;
