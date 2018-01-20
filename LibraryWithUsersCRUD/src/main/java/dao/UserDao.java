@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDao {
-    private Connection connection;
+    private final Connection connection;
 
     public UserDao() {
         this.connection = DbUtil.getConnection();

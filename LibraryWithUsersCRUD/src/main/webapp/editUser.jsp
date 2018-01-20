@@ -15,7 +15,7 @@
     <title>Update user page</title>
 </head>
 <body>
-<form method="post" action="/UserCommit">
+<form method="post" action="UserCommit">
     id: <input type="text" readonly="readonly" name="userId" value="<c:out value="${user.id}"/>"><br/>
     name: <input type="text" name="name" value="<c:out value="${user.name}"/>"><br/>
     dob: <input type="text" name="dob" value="<fmt:formatDate pattern='${"dd/MM/yyyy"}' value='${user.dob}'/>"><br/>

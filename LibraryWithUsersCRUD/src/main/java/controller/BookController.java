@@ -16,10 +16,10 @@ import java.util.Date;
 import static util.ActionOperations.*;
 
 public class BookController extends HttpServlet {
-    private BookDao bookDao;
+    private final BookDao bookDao;
 
-    public static final String LIST_BOOK = "/listBooks.jsp";
-    public static final String UPDATE_BOOK = "/editBook.jsp";
+    private static final String LIST_BOOK = "/listBooks.jsp";
+    private static final String UPDATE_BOOK = "/editBook.jsp";
 
     public BookController() {
         this.bookDao = new BookDao();

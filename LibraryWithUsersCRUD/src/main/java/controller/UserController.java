@@ -16,7 +16,7 @@ import java.util.Date;
 
 public class UserController extends HttpServlet {
 
-    private UserDao dao;
+    private final UserDao dao;
 
     private static final String INSERT_OR_EDIT = "/editUser.jsp";
     private static final String LIST_USER = "/listUsers.jsp";
